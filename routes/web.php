@@ -21,16 +21,17 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-Route::group(['middleware'=>'auth'],function(){
+Route::group(['middleware'=>'auth','admin'],function(){
     Route::get('/superadmin', 'AdminController@index')->name('superadmin');
     Route::resource('users','AdminController');
     Route::post('update_admin', 'AdminController@update_admin')->name('users.update_admin');
 });
-Route::group(['middleware'=>'auth'],function(){
+Route::group(['middleware'=>'auth','Auser'],function(){
     Route::get('/admin', 'HomeController@index')->name('admin');
 });
-Route::group(['middleware'=>'auth'],function(){
-    Route::get('/dashboard', 'HomeController@index')->name('dashboard');
+Route::group(['middleware'=>'auth','Euser'],function(){
+    Route::get('/dashboard', 'EmployeeController@index')->name('dashboard');
+    Route::resource('employee','EmployeeController');
 });
 // Route::get('/home', 'HomeController@index')->name('home');
 // Route::group(['middleware'=>['auth','checkUser']],function(){
