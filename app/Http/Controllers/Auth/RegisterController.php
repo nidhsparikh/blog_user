@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -29,8 +30,27 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/login';
+    // protected $redirectTo = '/login';
+    public function redirectTo()
+    {
+            if(auth()->user()->is_superadmin === 1){
+                return '/superadmin';
+            }
+            else if((auth()->user()->is_superadmin === 0) && (auth()->user()->role == 'admin')){
+                return '/admin';
+            }
+            else if((auth()->user()->is_superadmin === 0) && (auth()->user()->role == 'employee')){
+                return '/dashboard';
+            }
 
+        // if (auth()->user()->is_admin) {
+        //     return '/admin/dashboard';
+        // } else if (auth()->user()->is_authenticated) {
+        //     return '/app';
+        // } else {
+        //     return '/home';
+        // }
+    }
     /**
      * Create a new controller instance.
      *

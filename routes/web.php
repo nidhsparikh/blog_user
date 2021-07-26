@@ -27,14 +27,11 @@ Route::group(['middleware'=>'auth','admin'],function(){
     Route::post('update_admin', 'AdminController@update_admin')->name('users.update_admin');
 });
 Route::group(['middleware'=>'auth','Auser'],function(){
-    Route::get('/admin', 'HomeController@index')->name('admin');
+    Route::get('/admin', 'AllAdminController@index')->name('admin');
 });
 Route::group(['middleware'=>'auth','Euser'],function(){
     Route::get('/dashboard', 'EmployeeController@index')->name('dashboard');
     Route::resource('employee','EmployeeController');
 });
-// Route::get('/home', 'HomeController@index')->name('home');
-// Route::group(['middleware'=>['auth','checkUser']],function(){
-//     Route::get('/home', 'HomeController@index')->name('home');
-// });
+
 

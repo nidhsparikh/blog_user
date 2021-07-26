@@ -15,7 +15,7 @@ class AllAdminController extends Controller
     public function index()
     {
         $users = User::where('is_superadmin', 0)->get();
-        return view('sadmin.index', compact('users'));
+        return view('admin.index', compact('users'));
     }
 
     /**

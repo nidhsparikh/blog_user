@@ -12,7 +12,7 @@
                     <th>Email</th>
                     <th>Mobile Number</th>
                     <th>Role</th>
-                    <th width="280px">Action</th>
+                    <!-- <th width="280px">Action</th> -->
                 </tr>
                 @foreach ($users as $user)
                 <tr>
@@ -22,19 +22,16 @@
                     <td>{{ $user->email }}</td>
                     <td>{{ $user->mobile_number }}</td>
                     <td>{{ $user->role }}</td>
-                    <td>
+                    <!-- <td> -->
                         <!-- <form action="{{ route('users.destroy',$user->id) }}" method="POST"> -->
                             
-                            <a class="btn btn-warning" href="{{ route('users.edit',$user->id) }}">Edit</a>
-                            @if($user->role == 'employee')
-                            <a class="btn btn-info" href="{{ route('users.show',$user->id) }}">Assign</a>
-                            @endif
+                            <!-- <a class="btn btn-warning" href="{{ route('users.edit',$user->id) }}">Edit</a> -->
                             <!-- @csrf
                             @method('DELETE')
 
                             <button type="submit" class="btn btn-danger">Delete</button> -->
-                        </form>
-                    </td>
+                        <!-- </form>
+                    </td> -->
                 </tr>
                 @endforeach
             </table>
