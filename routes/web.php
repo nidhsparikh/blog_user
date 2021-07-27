@@ -28,6 +28,7 @@ Route::group(['middleware'=>'auth','admin'],function(){
 });
 Route::group(['middleware'=>'auth','Auser'],function(){
     Route::get('/admin', 'AllAdminController@index')->name('admin');
+    Route::resource('admin_users','AllAdminController');
 });
 Route::group(['middleware'=>'auth','Euser'],function(){
     Route::get('/dashboard', 'EmployeeController@index')->name('dashboard');

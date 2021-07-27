@@ -47,4 +47,9 @@ class User extends Authenticatable
     public function isEmployee(){
         return $this->role ===  'employee';
     }
+    public function assign_user()
+    {
+        return $this->hasOne('App\assign_user','user_id');
+    }
+
 }

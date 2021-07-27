@@ -10,4 +10,8 @@ class assign_user extends Model
     protected $fillable = [
         'assign_admin','user_id',
     ];
+    public function user()
+    {
+        return $this->belongsTo('App\User','id');
+    }
 }

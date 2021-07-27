@@ -17,10 +17,11 @@ class Admin
     public function handle($request, Closure $next)
     {
         if(Auth::check()){
-            if(Auth::user()->isSAdmin()){
-                return redirect(route('dashboard'));
+            if((Auth::user()->is_superadmin === 1)){
+                return $next($request);
+                // return redirect(route('superadmin'));
             }
         }
-        abort(404);
+        abort(403);
     }
 }

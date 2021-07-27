@@ -17,11 +17,12 @@ class EUser
     public function handle($request, Closure $next)
     {
         if(Auth::check()){
-            if(Auth::user()->isEmployee()){
-                return redirect(route('dashboard'));
+            if((auth()->user()->is_superadmin === 0) && (auth()->user()->role == 'employee')){
+                return $next($request);
+                // return redirect(route('dashboard'));
             }
         }
-        abort(404);
+        abort(403);
         // return $next($request);
     }
 }

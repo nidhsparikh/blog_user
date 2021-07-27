@@ -13,6 +13,10 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware(['Admin','auth']);
+    }
     public function index()
     {
         $users = User::where('is_superadmin', 0)->get();
@@ -48,7 +52,7 @@ class AdminController extends Controller
      */
     public function show($id)
     {
-        $user = User::find($id);
+        $user = User::findOrFail($id);
         $admin= user::where('role','admin')->orderBy('id', 'ASC')->get();
         if ($user) {
             return view('sadmin.assign', compact('user','admin','id'));
@@ -65,7 +69,7 @@ class AdminController extends Controller
      */
     public function edit($id)
     {
-        $user = User::find($id);
+        $user = User::findOrFail($id);
         if ($user) {
             return view('sadmin.edit', compact('user'));
         } else {
@@ -82,7 +86,7 @@ class AdminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user = User::find($id);
+        $user = User::findOrFail($id);
         if ($user) {
 
             $this->validate($request, [

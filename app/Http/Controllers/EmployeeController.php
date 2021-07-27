@@ -17,10 +17,14 @@ class EmployeeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware(['Euser','auth']);
+    }
     public function index()
     {
         $id = Auth::user()->id;
-        $user = User::find($id);
+        $user = User::findOrFail($id);
         if ($user) {
             return view('employee.index', compact('user'));
         } else {
